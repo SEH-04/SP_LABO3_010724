@@ -13,6 +13,5 @@ function ocultarLoader() {
 }
 
 function action(visible = false) {
-  const DISPLAY = visible ? "flex" : "none";
-  document.getElementById("loader").style.display = DISPLAY;
+  document.getElementById("loader").classList.toggle("invisible");
 }
