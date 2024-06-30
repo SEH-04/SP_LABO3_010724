@@ -1,0 +1,39 @@
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 500px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+input[type="file"] {
+  padding-block: 1.5rem;
+}
+
+input[type="radio"] {
+  margin-top: 18px;
+  width: fit-content;
+}
+
+input,
+textarea,
+select {
+  margin-top: 4px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 0.25rem;
+  display: inline-block;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  min-height: 70px;
+  resize: vertical;
+}
+
+.form-group.inline {
+  grid-column: 1 / -1;
+  gap: 1rem;
+}
