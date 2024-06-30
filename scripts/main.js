@@ -33,7 +33,7 @@ async function handlerSubmit(e) {
   switch ($BTN_SUBMIT.textContent) {
     case "Guardar":
       const MODEL = new Casa(
-        Date.now(),
+        OBJETOS.length + 1,
         ...Object.values(form)
           .filter((e) => e.type !== "hidden") //? Omite el input del id
           .map((e) => e.value)
@@ -103,16 +103,17 @@ function handlerEliminarTodo(e) {
 }
 
 function alta(model) {
-  cargarDatos(() => {
+  cargarDatos(async () => {
     const respuesta = model.verificar();
 
     if (respuesta.success) {
+      $DIALOG.close();
+      OBJETOS.push(model);
+
       try {
-        OBJETOS.push(model);
-        API.agregar(model);
+        await API.agregar(model);
         restablecerFormulario();
         handlerCargarTabla();
-        $DIALOG.close();
       } catch (error) {
         alert(error);
       }
