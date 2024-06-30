@@ -75,13 +75,13 @@ function handleCheckedChange(e) {
   const $CHECKBOX = e.target;
   const $TBODY = document.querySelector("table tbody");
   const $filas = $TBODY.querySelectorAll("tr");
-  const key = $CHECKBOX.parentElement.te;
+  const key = $CHECKBOX.parentElement.textContent;
 
   $filas.forEach(($fila) => {
     const $celda = $fila.querySelector(`td[data-key="${key}"]`);
 
     if ($celda) {
-      $celda.style.opacity = $CHECKBOX.checked ? 1 : 0;
+      $celda.classList.toggle("invisible");
     }
   });
 }
