@@ -21,7 +21,7 @@ export default class Planeta extends PlanetaBase {
   }
 
   verificar() {
-    return true;
+    return { success: true, response: null };
     const respuesta = super.verificar();
 
     if (!respuesta.success) {

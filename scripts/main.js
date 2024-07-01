@@ -37,7 +37,7 @@ async function handlerSubmit(e) {
         OBJETOS.length + 1,
         ...Object.values(form)
           .filter((e) => e.type !== "hidden") //? Omite el input del id
-          .map((e) => e.value)
+          .map((e) => (e.type === "checkbox" ? e.checked : e.value))
       );
 
       alta(MODEL);
@@ -126,7 +126,9 @@ function alta(model) {
 
 function modificar(model, form) {
   cargarDatos(async () => {
-    const propiedades = Object.keys(model).filter((e) => e !== "id");
+    const propiedades = Object.keys(model)
+      .filter((e) => e !== "id")
+      .map((e) => (e.type === "checkbox" ? e.checked : e.value));
     propiedades.forEach((field) => {
       if (form[field]) {
         model[field] = form[field].value;
