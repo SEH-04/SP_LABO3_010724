@@ -60,6 +60,11 @@ input[type="submit"] {
   justify-content: space-between;
 }
 
+header {
+  height: 40svh;
+  background: url(../public/background.jpg) no-repeat center center/cover;
+}
+
 .hero-img {
   flex-shrink: 0;
   object-fit: cover;

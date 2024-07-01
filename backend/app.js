@@ -6,84 +6,172 @@ const port = 3000;
 app.use(cors()); // Habilita CORS para todas las rutas
 app.use(express.json());
 
-let casas = [
-  { id: 1, titulo: "Casa Roja", precio: 120000, transaccion: "Venta" },
-  { id: 2, titulo: "Casa Blanca", precio: 250000, transaccion: "Alquiler" },
-  { id: 3, titulo: "Casa Gris", precio: 150000, transaccion: "Venta" },
+let items = [
+  {
+    id: 1,
+    nombre: "Mercurio",
+    tamano: 4879,
+    masa: 0.33,
+    tipo: "Rocoso",
+    distanciaAlSol: 57.9,
+    poseeAnillo: false,
+    presenciaVida: false,
+    composicionAtmosferica: "Oxígeno, Sodio, Hidrógeno",
+  },
+  {
+    id: 2,
+    nombre: "Venus",
+    tamano: 12104,
+    masa: 4.87,
+    tipo: "Rocoso",
+    distanciaAlSol: 108.2,
+    poseeAnillo: false,
+    presenciaVida: false,
+    composicionAtmosferica: "Dióxido de carbono, Nitrógeno",
+  },
+  {
+    id: 3,
+    nombre: "Tierra",
+    tamano: 12742,
+    masa: 5.97,
+    tipo: "Rocoso",
+    distanciaAlSol: 149.6,
+    poseeAnillo: false,
+    presenciaVida: true,
+    composicionAtmosferica: "Nitrógeno, Oxígeno",
+  },
+  {
+    id: 4,
+    nombre: "Marte",
+    tamano: 6779,
+    masa: 0.642,
+    tipo: "Rocoso",
+    distanciaAlSol: 227.9,
+    poseeAnillo: false,
+    presenciaVida: false,
+    composicionAtmosferica: "Dióxido de carbono, Nitrógeno, Argón",
+  },
+  {
+    id: 5,
+    nombre: "Júpiter",
+    tamano: 139820,
+    masa: 1898,
+    tipo: "Gaseoso",
+    distanciaAlSol: 778.3,
+    poseeAnillo: true,
+    presenciaVida: false,
+    composicionAtmosferica: "Hidrógeno, Helio",
+  },
+  {
+    id: 6,
+    nombre: "Saturno",
+    tamano: 116460,
+    masa: 568,
+    tipo: "Gaseoso",
+    distanciaAlSol: 1427,
+    poseeAnillo: true,
+    presenciaVida: false,
+    composicionAtmosferica: "Hidrógeno, Helio",
+  },
+  {
+    id: 7,
+    nombre: "Urano",
+    tamano: 50724,
+    masa: 86.8,
+    tipo: "Gaseoso",
+    distanciaAlSol: 2871,
+    poseeAnillo: true,
+    presenciaVida: false,
+    composicionAtmosferica: "Hidrógeno, Helio, Metano",
+  },
+  {
+    id: 8,
+    nombre: "Neptuno",
+    tamano: 49244,
+    masa: 102,
+    tipo: "Gaseoso",
+    distanciaAlSol: 4495,
+    poseeAnillo: true,
+    presenciaVida: false,
+    composicionAtmosferica: "Hidrógeno, Helio, Metano",
+  },
 ];
 
 // Middleware para simular una demora de 3 segundos
 const simulateDelay = (req, res, next) => {
-  setTimeout(next, 3000);
+  setTimeout(next, 0);
 };
 
 /**
- * Obtiene todas las Casas
+ * Obtiene todas los items
  */
-app.get("/casas", simulateDelay, (req, res) => {
-  res.json(casas);
+app.get("/planetas", simulateDelay, (req, res) => {
+  res.json(items);
 });
 
 /**
  * Crea una nueva Casa
  */
-app.post("/casas", simulateDelay, (req, res) => {
-  const nuevaCasa = req.body;
-  nuevaCasa.id = casas.length + 1;
-  casas.push(nuevaCasa);
-  res.status(200).json(nuevaCasa);
+app.post("/planetas", simulateDelay, (req, res) => {
+  const aux = req.body;
+  aux.id = items.length + 1;
+
+  items.push(aux);
+  res.status(200).json(aux);
 });
 
 /**
  * Obtiene Casa por ID
  */
-app.get("/casas/:id", simulateDelay, (req, res) => {
+app.get("/planetas/:id", simulateDelay, (req, res) => {
   const id = parseInt(req.params.id);
-  const casa = casas.find((p) => p.id === id);
-  if (casa) {
-    res.json(casa);
+  const aux = items.find((p) => p.id === id);
+
+  if (aux) {
+    res.json(aux);
   } else {
-    res.status(404).send("Casa no encontrada");
+    res.status(404).send("Item no encontrado");
   }
 });
 
 /**
- * Edita Casa por ID
+ * Edita item por ID
  */
-app.put("/casas/:id", simulateDelay, (req, res) => {
+app.put("/planetas/:id", simulateDelay, (req, res) => {
   const id = parseInt(req.params.id);
-  const index = casas.findIndex((p) => p.id === id);
-  if (index !== -1) {
-    const newObj = req.body;
-    newObj.id = id;
-    casas[index] = newObj;
+  const index = items.findIndex((p) => p.id === id);
 
-    res.json(newObj);
+  if (index !== -1) {
+    const aux = req.body;
+    aux.id = id;
+    items[index] = aux;
+
+    res.json(aux);
   } else {
-    res.status(404).send("Casa no encontrada");
+    res.status(404).send("No encontrado");
   }
 });
 
 /**
- * Elimina Casa por ID
+ * Elimina item por ID
  */
-app.delete("/casas/:id", simulateDelay, (req, res) => {
+app.delete("/planetas/:id", simulateDelay, (req, res) => {
   const id = parseInt(req.params.id);
-  const index = casas.findIndex((p) => p.id === id);
+  const index = items.findIndex((p) => p.id === id);
   if (index !== -1) {
-    casas.splice(index, 1);
+    items.splice(index, 1);
     res.status(200).send();
   } else {
-    res.status(404).send("Casa no encontrada");
+    res.status(404).send("No encontrado");
   }
 });
 
 /**
- * Elimina todas las Casas
+ * Elimina todas los item
  */
-app.delete("/casas", simulateDelay, (req, res) => {
-  casas = [];
-  res.status(200).send("Todas las casas han sido eliminadas");
+app.delete("/planetas", simulateDelay, (req, res) => {
+  items = [];
+  res.status(200).send("Todos los items han sido eliminados");
 });
 
 app.listen(port, () => {

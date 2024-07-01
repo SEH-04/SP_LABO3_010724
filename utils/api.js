@@ -15,7 +15,7 @@ export function seleccionarTodos() {
       }
     });
 
-    xhr.open("GET", `${ENDPOINT}/casas`);
+    xhr.open("GET", `${ENDPOINT}/planetas`);
     xhr.send();
   });
 }
@@ -34,7 +34,7 @@ export function agregar(model) {
       }
     });
 
-    xhr.open("POST", `${ENDPOINT}/casas`);
+    xhr.open("POST", `${ENDPOINT}/planetas`);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(model));
   });
@@ -54,7 +54,7 @@ export function modificar(model) {
       }
     });
 
-    xhr.open("PUT", `${ENDPOINT}/casas/${model.id}`);
+    xhr.open("PUT", `${ENDPOINT}/planetas/${model.id}`);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(JSON.stringify(model));
   });
@@ -62,7 +62,7 @@ export function modificar(model) {
 
 export function eliminar(model) {
   return new Promise((resolve, reject) => {
-    fetch(`${ENDPOINT}/casas/${model.id}`, {
+    fetch(`${ENDPOINT}/planetas/${model.id}`, {
       method: "DELETE",
     })
       .then((response) => {
@@ -79,7 +79,7 @@ export function eliminar(model) {
 
 export function eliminarTodo() {
   return new Promise((resolve, reject) => {
-    fetch(`${ENDPOINT}/casas`, {
+    fetch(`${ENDPOINT}/planetas`, {
       method: "DELETE",
     })
       .then((response) => {

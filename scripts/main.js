@@ -1,4 +1,4 @@
-import Casa from "./Casa.js";
+import Planeta from "./Planeta.js";
 import { cargarDatos } from "./loader.js";
 import * as API from "../utils/api.js";
 import { crearTabla, renderizarTabla, idFilaSeleccionada } from "./tabla.js";
@@ -33,7 +33,7 @@ async function handlerSubmit(e) {
 
   switch ($BTN_SUBMIT.textContent) {
     case "Guardar":
-      const MODEL = new Casa(
+      const MODEL = new Planeta(
         OBJETOS.length + 1,
         ...Object.values(form)
           .filter((e) => e.type !== "hidden") //? Omite el input del id
@@ -154,7 +154,7 @@ function handlerCargarObjetos(array) {
     let objectosAPI = await API.seleccionarTodos();
 
     objectosAPI.map((obj) => {
-      const model = new Casa(...Object.values(obj));
+      const model = new Planeta(...Object.values(obj));
       array.push(model);
     });
 
@@ -194,7 +194,7 @@ function handlerPromedio(e) {
 export default function crearControles() {
   let $contenedor = document.getElementById("controles-container");
 
-  Object.keys(new Casa())
+  Object.keys(new Planeta())
     .filter((p) => p !== "id")
     .map((propiedad) => {
       let $label = document.createElement("label");

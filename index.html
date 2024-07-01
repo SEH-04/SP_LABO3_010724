@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Segundo Parcial LaboIII</title>
+  <title>Segundo Parcial Labo III</title>
   <link rel="stylesheet" href="./styles/output.min.css">
   <link rel="stylesheet" href="./styles/form.css">
   <link rel="stylesheet" href="./styles/tabla.css">
   <link rel="stylesheet" href="./styles/loader.css">
   <script src="./scripts/main.js" type="module" defer></script>
+  <link rel="icon" href="/public/logo.svg" type="image/x-icon">
 </head>
 
 <body>
@@ -31,28 +32,32 @@
   </div>
 
   <div class="container flex">
-    <nav class="sm:flex justify-between items-center py-6 hidden">
-      <a href="/" title="Inicio">
-        <img src="public/logo.svg" alt="Casas+" title="Inicio" class="w-64">
-      </a>
+    <header class="p-4 text-white">
 
-      <ul class="flex gap-6 capitalize group-items">
-        <li class="hover:-translate-y-1 transition-transform">
-          <a href="#nosotros">nosotros</a>
-        </li>
-        <li class="hover:-translate-y-1 transition-transform">
-          <a href="#anuncios">anuncios</a>
-        </li>
-        <li class="hover:-translate-y-1 transition-transform">
-          <a href="#blog">blog</a>
-        </li>
-        <li class="hover:-translate-y-1 transition-transform">
-          <a href="#contacto">contacto</a>
-        </li>
-      </ul>
-    </nav>
+      <nav class="sm:flex justify-between items-center py-6 hidden">
+        <a href="/" title="Inicio">
+          <img src="public/logo.svg" alt="Casas+" title="Inicio" class="w-12">
+        </a>
 
-    <h2 class="subtitle">Casas<span>+</span></h2>
+        <ul class="flex gap-6 capitalize group-items">
+          <li class="hover:-translate-y-1 transition-transform">
+            <a href="#nosotros">nosotros</a>
+          </li>
+          <li class="hover:-translate-y-1 transition-transform">
+            <a href="#anuncios">anuncios</a>
+          </li>
+          <li class="hover:-translate-y-1 transition-transform">
+            <a href="#blog">blog</a>
+          </li>
+          <li class="hover:-translate-y-1 transition-transform">
+            <a href="#contacto">contacto</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+
+    <h2 class="subtitle">Administrador de <span>Planetas+</span></h2>
 
     <main class="flex flex-wrap flex-grow gap-3">
       <div class="space-y-3 flex-grow">
@@ -74,49 +79,54 @@
         <input type="text" disabled id="promedio" placeholder="N/A">
       </div>
 
-
       <dialog class="border-none m-auto">
         <form>
           <input type="hidden" name="id">
 
           <div class="form-group">
-            <label for="titulo">Titulo</label>
-            <input autocomplete="off" type="text" name="titulo">
+            <label for="nombre">Nombre</label>
+            <input autocomplete="off" type="text" name="nombre">
           </div>
 
-          <!-- <div class="form-group">
-            <label for="subtitulo">Subtitulo</label>
-            <input autocomplete="off" type="text" name="subtitulo">
-          </div> -->
-
-          <!-- <div class="form-group"> -->
-          <!-- <label for="descripcion">Descripción</label> -->
-          <!-- <textarea name="descripcion" -->
-          <!-- placeholder="Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, ullam."></textarea> -->
-          <!-- </div> -->
-
-          <!-- <div class="form-group">
-            <label for="img">Imagen</label>
-            <input type="file" name="img">
-          </div> -->
+          <div class="form-group">
+            <label for="massa">Massa</label>
+            <input type="number" name="massa" placeholder="Massa...">
+          </div>
 
           <div class="form-group">
-            <label for="precio">Precio</label>
-            <input type="number" name="precio">
-            <!-- <input type="number" name="peso" placeholder="Peso..."> -->
-            <!-- <input type="number" name="precio" placeholder="Precio..."> -->
+            <label for="tamano">Tamaño</label>
+            <input type="number" name="tamano" placeholder="Tamano...">
+          </div>
+
+          <div class="form-group">
+            <label for="tipo">Tipo</label>
+            <select name="tipo">
+              <option value="Rocoso">Rocoso</option>
+              <option value="Gaseoso">Gaseoso</option>
+              <option value="Enano">Enano</option>
+              <option value="Helado">Helado</option>
+            </select>
+          </div>
+          <!-- ======= -->
+          <div class="form-group inline">
+            <input type="number" name="distancia" placeholder="Distancia...">
+          </div>
+
+          <div class="form-group flex inline">
+            <label for="vida">Presenta vida</label>
+            <input type="checkbox" name="vida">
+            <label for="anillo">Tiene anillos</label>
+            <input type="checkbox" name="anillo">
           </div>
 
           <div class="form-group inline">
-            <label for="transaccion">Transacción</label>
-            <select name="transaccion">
-              <option value="Venta">Venta</option>
-              <option value="Alquiler">Alquiler</option>
-            </select>
+            <label for="composicion">Composición Atmosférica</label>
+            <input autocomplete="off" type="text" name="composicion">
           </div>
 
           <button class="btn btn-primary" type="submit">Guardar</button>
           <button class="btn btn-secondary" type="button" id="btn-cancelar">Cancelar</button>
+
         </form>
       </dialog>
     </main>
