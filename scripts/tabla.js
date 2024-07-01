@@ -21,19 +21,13 @@ function crearThead(items) {
 
   for (const key in items) {
     if (key != "id") {
-      const $CHECKBOX = document.createElement("input");
       const $TH = document.createElement("th");
-      $CHECKBOX.type = "checkbox";
-      $CHECKBOX.checked = true;
-      $CHECKBOX.id = "is-visible";
 
       $TH.textContent = key;
-      $TH.appendChild($CHECKBOX);
       $TR.appendChild($TH);
     }
   }
 
-  $TR.addEventListener("change", handleCheckedChange);
   $THEAD.appendChild($TR);
   return $THEAD;
 }
@@ -69,19 +63,4 @@ function handleRowClick(event) {
 
   $TR.style.backgroundColor = "#e8e8e8";
   idFilaAnterior = $TR;
-}
-
-function handleCheckedChange(e) {
-  const $CHECKBOX = e.target;
-  const $TBODY = document.querySelector("table tbody");
-  const $filas = $TBODY.querySelectorAll("tr");
-  const key = $CHECKBOX.parentElement.textContent;
-
-  $filas.forEach(($fila) => {
-    const $celda = $fila.querySelector(`td[data-key="${key}"]`);
-
-    if ($celda) {
-      $celda.classList.toggle("invisible");
-    }
-  });
 }

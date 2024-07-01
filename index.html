@@ -54,8 +54,11 @@
 
     <h2 class="subtitle">Casas<span>+</span></h2>
 
-    <main class="flex">
-      <section class="tabla-container" id="tabla-container"></section>
+    <main class="flex flex-wrap flex-grow gap-3">
+      <div class="space-y-3 flex-grow">
+        <section class="flex items-center p-2" id="controles-container"></section>
+        <section class="tabla-container" id="tabla-container"></section>
+      </div>
 
       <div class="btn-group flex">
         <button class="btn btn-primary" id="btn-agregar">Agregar</button>
@@ -70,6 +73,7 @@
         </select>
         <input type="text" disabled id="promedio" placeholder="N/A">
       </div>
+
 
       <dialog class="border-none m-auto">
         <form>

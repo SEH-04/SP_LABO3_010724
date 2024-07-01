@@ -18,6 +18,7 @@ document.addEventListener("DOMContentLoaded", onInit);
 function onInit(e) {
   handlerCargarObjetos(OBJETOS);
   handlerCargarTabla();
+  crearControles(OBJETOS);
 
   $FORM.addEventListener("submit", handlerSubmit);
   $BTN_MODIFICAR.addEventListener("click", handlerModificar);
@@ -188,4 +189,45 @@ function handlerPromedio(e) {
   }
 
   $PROMEDIO.value = promedio;
+}
+
+export default function crearControles() {
+  let $contenedor = document.getElementById("controles-container");
+
+  Object.keys(new Casa())
+    .filter((p) => p !== "id")
+    .map((propiedad) => {
+      let $label = document.createElement("label");
+      let $checkbox = document.createElement("input");
+
+      $label.textContent = propiedad;
+      $checkbox.type = "checkbox";
+      $checkbox.checked = true;
+      $checkbox.setAttribute("name", propiedad);
+      $label.setAttribute("for", propiedad);
+
+      $checkbox.addEventListener("change", handleFiltrarTabla);
+
+      $contenedor.appendChild($label);
+      $contenedor.appendChild($checkbox);
+    });
+}
+
+function handleFiltrarTabla(e) {
+  const $checkbox = e.target;
+  const $columnas = document.querySelectorAll(`table thead tr th`);
+  const $filas = document.querySelectorAll("table tbody tr");
+
+  // handlerCargarObjetos(OBJETOS.map(({ titulo, ...props }) => props));
+
+  $columnas.forEach((c) => {
+    if (c.textContent === $checkbox.name) {
+      c.classList.toggle("hidden");
+    }
+  });
+
+  $filas.forEach((f) => {
+    let $td = f.querySelector(`td[data-key=${$checkbox.name}]`);
+    $td.classList.toggle("hidden");
+  });
 }
