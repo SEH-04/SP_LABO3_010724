@@ -37,3 +37,22 @@ textarea {
   grid-column: 1 / -1;
   gap: 1rem;
 }
+
+form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  max-width: 500px;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.form-group.inline {
+  grid-column: 1 / -1;
+  gap: 1rem;
+}
+
+.form-group.inline label {
+  width: 100%;
+}
