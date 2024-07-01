@@ -11,7 +11,7 @@ const $BTN_ELIMINAR = document.getElementById("btn-eliminar");
 const $BTN_ELIMINAR_TODO = document.getElementById("btn-eliminar-todo");
 const $BTN_MODIFICAR = document.getElementById("btn-modificar");
 
-const $SELECT_TRANSACCION = document.getElementById("input-transaccion");
+const $SELECT_TIPO = document.getElementById("input-tipo");
 
 document.addEventListener("DOMContentLoaded", onInit);
 
@@ -24,7 +24,7 @@ function onInit(e) {
   $BTN_MODIFICAR.addEventListener("click", handlerModificar);
   $BTN_ELIMINAR.addEventListener("click", handlerEliminar);
   $BTN_ELIMINAR_TODO.addEventListener("click", handlerEliminarTodo);
-  $SELECT_TRANSACCION.addEventListener("change", handlerPromedio);
+  $SELECT_TIPO.addEventListener("change", handlerPromedio);
 }
 
 async function handlerSubmit(e) {
@@ -176,22 +176,22 @@ function handlerPromedio(e) {
   let value = e.target.value;
   let promedio = 0;
 
-  OBJETOS.map(({ precio, transaccion }) => {
-    if (value === transaccion) {
-      promedio += precio;
+  OBJETOS.map(({ distancia, tipo }) => {
+    if (value === tipo) {
+      promedio += distancia;
     }
   });
 
   if (promedio === 0) {
     promedio = "N/A";
   } else {
-    promedio = promedio / OBJETOS.filter((e) => e.transaccion === value).length;
+    promedio = promedio / OBJETOS.filter((e) => e.tipo === value).length;
   }
 
   $PROMEDIO.value = promedio;
 }
 
-export default function crearControles() {
+function crearControles() {
   let $contenedor = document.getElementById("controles-container");
 
   Object.keys(new Planeta())
@@ -217,8 +217,6 @@ function handleFiltrarTabla(e) {
   const $checkbox = e.target;
   const $columnas = document.querySelectorAll(`table thead tr th`);
   const $filas = document.querySelectorAll("table tbody tr");
-
-  // handlerCargarObjetos(OBJETOS.map(({ titulo, ...props }) => props));
 
   $columnas.forEach((c) => {
     if (c.textContent === $checkbox.name) {
